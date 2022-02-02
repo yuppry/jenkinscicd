@@ -1,4 +1,6 @@
-FROM openjdk:alpine
-RUN mkdir /mydata
-ADD myproj-1.0-SNAPSHOT.jar /mydata/myproj-1.0-SNAPSHOT.jar
-CMD java -cp /mydata/myproj-1.0-SNAPSHOT.jar com.raman.App
+FROM ubuntu
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt-get -y install apache2
+ADD index.html /var/www/html
+ENTRYPOINT apachectl -D FOREGROUND
